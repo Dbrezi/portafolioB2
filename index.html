@@ -7,8 +7,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 <style>
   :root{
+    --paper:#0D1513;
+    --paper-raised:#152220;
+    --ink:#E9F2EF;
+    --ink-soft:#9FB6B0;
+    --line:#25322E;
+    --b1:#98A8D4;
+    --b2:#57D9C9;
+    --gold:#E7B463;
+    --rose:#E58AA3;
+    --violet:#B29BDD;
+    --cyan:#7EC2E3;
+    --shadow:rgba(0,0,0,0.4);
+    --b2-tint:#122522;
+    --b1-tint:#181C2A;
+    --gold-tint:#241D10;
+  }
+  :root[data-theme="light"]{
     --paper:#F2F6F5;
     --paper-raised:#FFFFFF;
     --ink:#12211E;
@@ -24,42 +42,6 @@
     --b2-tint:#E4F1EF;
     --b1-tint:#E9EBF2;
     --gold-tint:#FBF0DE;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper:#0D1513;
-      --paper-raised:#152220;
-      --ink:#E9F2EF;
-      --ink-soft:#9FB6B0;
-      --line:#25322E;
-      --b1:#98A8D4;
-      --b2:#57D9C9;
-      --gold:#E7B463;
-      --rose:#E58AA3;
-      --violet:#B29BDD;
-      --cyan:#7EC2E3;
-      --shadow:rgba(0,0,0,0.4);
-      --b2-tint:#122522;
-      --b1-tint:#181C2A;
-      --gold-tint:#241D10;
-    }
-  }
-  :root[data-theme="dark"]{
-      --paper:#0D1513;
-      --paper-raised:#152220;
-      --ink:#E9F2EF;
-      --ink-soft:#9FB6B0;
-      --line:#25322E;
-      --b1:#98A8D4;
-      --b2:#57D9C9;
-      --gold:#E7B463;
-      --rose:#E58AA3;
-      --violet:#B29BDD;
-      --cyan:#7EC2E3;
-      --shadow:rgba(0,0,0,0.4);
-      --b2-tint:#122522;
-      --b1-tint:#181C2A;
-      --gold-tint:#241D10;
   }
 
   *{box-sizing:border-box;}
@@ -91,12 +73,20 @@
     background:var(--paper);
     border-bottom:1px solid var(--line);
   }
-  nav.pillnav .wrap{ display:flex; gap:22px; padding:14px 24px; overflow-x:auto; }
+  nav.pillnav .wrap{ display:flex; align-items:center; gap:16px; padding:14px 24px; }
+  nav.pillnav .pillnav-links{ display:flex; gap:22px; overflow-x:auto; min-width:0; }
   nav.pillnav a{
     color:var(--ink-soft); text-decoration:none; font-size:0.86rem; font-weight:600;
     white-space:nowrap; border-bottom:2px solid transparent; padding-bottom:2px;
   }
   nav.pillnav a:hover{ color:var(--ink); border-color:var(--gold); }
+  .theme-toggle{
+    flex-shrink:0; width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper-raised); color:var(--ink);
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem; line-height:1; transition:border-color .2s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{ border-color:var(--gold); transform:translateY(-1px); }
 
   /* ---------- hero ---------- */
   header.hero{ padding:64px 0 40px; border-bottom:1px solid var(--line); }
@@ -339,13 +329,18 @@
 <body>
 <nav class="pillnav">
   <div class="wrap">
-    <a href="#trayecto">Trayecto</a>
-    <a href="#sobre">Sobre mí</a>
-    <a href="#formacion">Formación</a>
-    <a href="#objetivos">Objetivos</a>
-    <a href="#b2">Portafolio B2</a>
-    <a href="#programa">Programa B2</a>
-    <a href="#b1">Portafolio B1</a>
+    <div class="pillnav-links">
+      <a href="#trayecto">Trayecto</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#formacion">Formación</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#b2">Portafolio B2</a>
+      <a href="#programa">Programa B2</a>
+      <a href="#b1">Portafolio B1</a>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a tema claro" aria-pressed="false">
+      <span class="theme-toggle-icon" aria-hidden="true">☀︎</span>
+    </button>
   </div>
 </nav>
 
@@ -737,6 +732,29 @@
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var themeBtn = document.getElementById('theme-toggle');
+  if(themeBtn){
+    var themeIcon = themeBtn.querySelector('.theme-toggle-icon');
+    function syncThemeButton(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      themeIcon.textContent = isLight ? '☾' : '☀︎';
+      themeBtn.setAttribute('aria-pressed', String(isLight));
+      themeBtn.setAttribute('aria-label', isLight ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro');
+    }
+    syncThemeButton();
+    themeBtn.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if(isLight){
+        document.documentElement.removeAttribute('data-theme');
+        try{ localStorage.setItem('theme', 'dark'); }catch(e){}
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        try{ localStorage.setItem('theme', 'light'); }catch(e){}
+      }
+      syncThemeButton();
+    });
+  }
 
   function animateCount(el){
     var target = parseFloat(el.dataset.countTo);
