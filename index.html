@@ -90,7 +90,17 @@
   .theme-toggle:hover{ border-color:var(--gold); transform:translateY(-1px); }
 
   /* ---------- hero ---------- */
-  header.hero{ padding:64px 0 40px; border-bottom:1px solid var(--line); }
+  /* The hero always renders in the dark palette, regardless of the light/dark
+     toggle — a fixed, high-contrast anchor at the top of the page rather than
+     a header that just follows whatever theme is active. */
+  header.hero{
+    --paper:#14141B; --paper-raised:#1D1E28; --ink:#EDEEF3; --ink-soft:#9FA3AE; --line:#2B2C36;
+    --gold:#4C8DFF; --sage:#22C7A0; --terracotta:#FF4D8D;
+    --gold-tint:#16233D; --sage-tint:#123028; --terracotta-tint:#331522;
+    --shadow:rgba(0,0,0,0.45);
+    background:var(--paper); color:var(--ink);
+    padding:64px 0 40px; border-bottom:1px solid var(--line);
+  }
   header.hero h1{ font-size:clamp(2.1rem,5vw,3rem); margin-top:10px; }
   .role{ margin-top:10px; color:var(--ink-soft); font-size:1.02rem; max-width:62ch; }
   .role b{ color:var(--ink); font-weight:600; }
@@ -959,7 +969,7 @@ Español rioplatense. Usá siempre voseo con tilde (podés, imaginás, necesitá
 
 <footer>
   <div class="wrap">
-    <div>Damiana Rezinovsky Morillas · ISTEEC N.º 9-013 · Portafolio actualizado el 02/09/2026</div>
+    <div>Damiana Rezinovsky Morillas · ISTEEC N.º 9-013 · Portafolio actualizado el 29/09/2026</div>
     <div class="frameworks">
       <span>DigCompEdu</span><span>e-DigCompEdu</span><span>UNESCO · IA docentes</span><span>RAM · Res. 1286-DGE-2024</span>
     </div>
