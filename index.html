@@ -159,6 +159,12 @@
     font-family:'Space Mono','Courier New',monospace; font-size:0.66rem; padding:2px 7px; border-radius:5px;
     background:var(--paper); border:1px solid var(--line); color:var(--ink-soft);
   }
+  .card-link{
+    display:inline-flex; align-items:center; gap:4px; margin-top:12px;
+    font-family:'Space Mono','Courier New',monospace; font-size:0.74rem; font-weight:600;
+    color:var(--gold); text-decoration:none; border-bottom:1px solid transparent;
+  }
+  .card-link:hover{ border-color:var(--gold); }
 
   /* ---------- diagnostic evidence block ---------- */
   .diag{
@@ -569,9 +575,11 @@
     <!-- module evidences -->
     <div class="grid">
       <div class="card b2">
-        <div class="card-top"><h3>1 · Ecosistema de recursos digitales</h3><span class="tag tag-progress">En construcción</span></div>
+        <div class="card-top"><h3>1 · Ecosistema de recursos digitales</h3><span class="tag tag-done">Completa</span></div>
         <div class="meta">Módulo 1 · Curaduría digital avanzada · 31/08 – 14/09</div>
         <p>Colección y repositorio de recursos curados con criterios de calidad, licencia y accesibilidad, con apoyo de IA para la curaduría.</p>
+        <a class="card-link" href="https://view.genially.com/6ab42ae55c66f350f12c1434" target="_blank" rel="noopener">Ver en Genially ↗</a>
+        <button id="toggle-modulo1" class="card-link" type="button" style="background:none; border:none; cursor:pointer; margin-left:14px;" aria-expanded="false">Ver entrada completa ↓</button>
       </div>
       <div class="card b2">
         <div class="card-top"><h3>2 · Plan de tutoría basado en datos</h3><span class="tag tag-progress">En construcción</span></div>
@@ -597,6 +605,46 @@
         <div class="card-top"><h3>6 · Proyecto integrador</h3><span class="tag tag-progress">En construcción</span></div>
         <div class="meta">Coloquio de defensa · 23/11 – 30/11</div>
         <p>Transformación de una propuesta docente propia, integrando las cinco evidencias anteriores y su fundamentación.</p>
+      </div>
+    </div>
+
+    <div id="modulo1-entry" style="display:none; margin-top:28px;">
+      <div class="card b2">
+        <div class="card-top"><h3>Entrada de portafolio · Módulo 1 — Mi ecosistema de recursos curados</h3></div>
+        <div class="diag-note" style="margin-bottom:16px;">
+          <b>Contexto:</b> Gestión de inventarios es la Unidad 2 de mi cátedra Logística Integral y ya existe en el aula virtual, desarrollada en 4 clases (Clases 3 a 6 del programa). Las menciones a "Actividad de Clase 3/4/5/6" o al "Laboratorio ABC" a lo largo de esta entrada refieren a ese material ya publicado: lo que hice para esta evidencia fue <b>nutrir esas clases</b> con un ecosistema de recursos curados que las complementa, no crear un contenido aislado ni reemplazar lo que ya estaba en el aula.
+        </div>
+        <p><b>Objetivo de aprendizaje:</b> que el estudiante diagnostique un problema de inventario, aplique las herramientas de la unidad —pronóstico push/pull, clasificación ABC, EOQ/Punto de Pedido— para resolverlo, y evalúe el resultado con KPIs, entendiendo el "para qué" de cada herramienta y no solo el cálculo.</p>
+        <p>El ecosistema se organiza como una <b>ruta de aprendizaje</b> (Opción B de la consigna) con una bifurcación después del cuarto recurso: quien ya domina el cálculo avanza por la Rama A (demanda variable y nivel de servicio); quien necesita afianzar el sentido va por la Rama B (casos reales de mala gestión). Ambas ramas convergen antes del cierre integrador, que retoma la misma crisis inicial —TechStore— para mostrar cómo cada herramienta la hubiera evitado.</p>
+
+        <div class="timeline-wrap" style="margin-top:18px;">
+          <table class="timeline">
+            <thead><tr><th>#</th><th>Recurso</th><th>Tipo / herramienta</th><th>Licencia</th></tr></thead>
+            <tbody>
+              <tr><td class="when">1</td><td>Una semana sin gestión de inventario: la crisis de TechStore</td><td>Línea de tiempo interactiva (Genially)</td><td>CC BY-NC-SA — autoría propia</td></tr>
+              <tr><td class="when">2</td><td>Push vs. Pull: 5 decisiones, 5 empresas</td><td>Infografía (Canva)</td><td>CC BY-SA — autoría propia</td></tr>
+              <tr><td class="when">3</td><td>ABC en vivo: clasificá tu propio inventario</td><td>Plantilla interactiva (Google Sheets)</td><td>CC BY — autoría propia</td></tr>
+              <tr><td class="when">4</td><td>¿Y si cambian las condiciones? Sensibilidad del Punto de Pedido</td><td>Calculadora interactiva (Google Sheets)</td><td>CC BY — autoría propia</td></tr>
+              <tr><td class="when">5</td><td>Rama A · Demanda variable y nivel de servicio</td><td>Video/artículo curado (REA)</td><td>Del autor original — fuente citada</td></tr>
+              <tr><td class="when">6</td><td>Rama B · Cuando el inventario sale mal: 3 historias reales</td><td>Texto narrativo / mini-podcast</td><td>CC BY — autoría propia</td></tr>
+              <tr><td class="when">7</td><td>Cómo mide la industria el inventario: KPIs reales</td><td>Infografía/video curado (REA)</td><td>Del autor original — fuente citada</td></tr>
+              <tr><td class="when">8</td><td>TechStore, un año después: cerrando el círculo (integrador)</td><td>Mapa interactivo (Genially)</td><td>CC BY-NC-SA — autoría propia</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meta" style="margin-top:10px;">6 de 8 recursos con licencia Creative Commons propia · 2 son REA curados con licencia del autor original citada — cumple el mínimo de cuatro recursos abiertos que pide la consigna.</p>
+
+        <div style="margin-top:22px;">
+          <span class="eyebrow">Reflexión sobre el uso de la IA</span>
+          <p class="prose" style="margin-top:6px;">Usé IA (Claude) en casi todas las etapas de la curaduría: para comparar recursos candidatos (por ejemplo, evalué tres videos de YouTube sobre KPIs de inventario antes de elegir el de Recurso 7), para armar las fichas de calidad de cada recurso, y para resolver obstáculos técnicos de diseño en Genially y HeyGen. También usé una IA generativa de imágenes para la infografía de Recurso 2 y HeyGen para generar mis propios avatares en video en Recurso 5. La revisión crítica fue constante: en dos oportunidades la IA me dio información desactualizada sobre el estado real de mis propios recursos (un recurso que yo ya había avanzado bastante, y un gráfico que dio por incompleto cuando en realidad estaba terminado), y tuve que corregirla mostrando evidencia directa. También descarté su primera recomendación de video para Recurso 7 (un canal corporativo) porque, revisado con más detalle, cubría menos indicadores de los que pedía mi propia planificación. Aprendí a no aceptar una sugerencia de la IA sin volver a la fuente original —la ficha, la consigna del módulo o el recurso mismo— antes de darla por buena.</p>
+        </div>
+
+        <div style="margin-top:22px;">
+          <span class="eyebrow">Cierre reflexivo del proceso</span>
+          <p class="prose" style="margin-top:6px;">La decisión más relevante fue la de formato: cuando el Recurso 6 no pudo resolverse como podcast por limitaciones técnicas de la cuenta gratuita de Genially, elegí pasarlo a texto en lugar de forzar una solución técnica de menor calidad —la propia consigna del módulo lo permite, y prioricé que el recurso funcionara bien por sobre completar un formato planificado de antemano. Algo parecido pasó con el Recurso 7 de KPIs: mantuve un video que no tiene licencia Creative Commons porque, evaluado a fondo, era más confiable y pertinente que las alternativas con licencia abierta que encontré, y elegí declarar esa licencia con honestidad en la ficha en lugar de descartarlo solo para cumplir ese criterio de forma mecánica.</p>
+          <p class="prose">Eso modificó un supuesto inicial: entendí que la pertinencia pedagógica pesa más que cumplir al pie de la letra reglas que yo misma me había fijado al planificar (duración, formato, herramienta) — lo que importa es que cada recurso tenga sentido y esté acompañado de una nota docente clara, no que encaje en un molde rígido.</p>
+          <p class="prose">Este ecosistema enriquece la experiencia de mis estudiantes porque la bifurcación (Rama A de profundización, Rama B de refuerzo) les da una salida según su necesidad real después de la Clase 5, en vez de obligarlos a todos por el mismo camino; las historias reales de la Rama B y el video de KPIs conectan las fórmulas que ya vieron con consecuencias concretas fuera del aula; y usar mi propia voz en video (Recurso 5) sostiene la cercanía docente aun en un recurso mediado por IA.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -834,6 +882,18 @@
           });
         });
       }
+    });
+  }
+
+  var toggleM1 = document.getElementById('toggle-modulo1');
+  var entryM1 = document.getElementById('modulo1-entry');
+  if(toggleM1 && entryM1){
+    toggleM1.addEventListener('click', function(){
+      var open = entryM1.style.display !== 'none';
+      entryM1.style.display = open ? 'none' : 'block';
+      toggleM1.setAttribute('aria-expanded', String(!open));
+      toggleM1.textContent = open ? 'Ver entrada completa ↓' : 'Ocultar entrada completa ↑';
+      if(!open) entryM1.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
     });
   }
 })();
